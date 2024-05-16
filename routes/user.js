@@ -8,14 +8,8 @@ const router = new express.Router();
 const app = express();
 
 router.get('/', async (req, res) => {
-    let user = null;
-    if (req.user) {
-        user = req.user;
-    }
-    console.log(user)
     res.render('home', {
         title: "Acceuil",
-        user: user
     });
 });
 
@@ -82,13 +76,6 @@ router.post('/seconnecter', async (req, res) => {
 
 router.get('/deconnexion', authentification, async (req, res) => {
     try {
-        console.log('User ID:', req.user._id);
-        console.log('Auth Token to remove:', req.authToken);
-        console.log('Current Auth Tokens:', req.user.AuthTokens);
-        await User.updateOne(
-            { _id: req.user._id },
-            { $pull: { AuthTokens: { AuthToken: req.authToken } } }
-        );
         res.clearCookie('jwt');
         res.redirect('/');
     } catch(e) {

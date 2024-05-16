@@ -7,9 +7,7 @@ const authentification = async (req, res, next) => {
         const authToken = req.cookies.jwt
         const verify = jwt.verify(authToken, 'test');
         const user = await User.findById( {_id : verify._id});
-        console.log(req.user)
-
-
+    
         if (!user) throw new Error("Utilisateur introuvable !")
         req.authToken = authToken;
         req.user = user;
