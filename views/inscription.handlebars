@@ -1,0 +1,73 @@
+    <section class="main_heading my-5 mt-5">
+      <div class="text-center ">
+        <h1 class="display-4">S'inscire</h1>
+        <hr class="w-25 mx-auto" />
+      </div>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-xxl-8 col-md-8  col-10 mx-auto">
+              <form action="/inscription" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" name="nom" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Prenom</label>
+                  <input type="text" class="form-control" id="prenom" name="prenom" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Adresse email</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+                  <div id="emailHelp" class="form-text">Nous n'allons jamais partager votre email.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Confirmer votre mot de passe</label>
+                  <input type="password" class="form-control" id="passwordconf" name="passwordconf" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label" name="Genre", id="Genre">Genre </label>
+                  <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genre" id="genre" value="Homme">
+                        <label class="form-check-label" for="inlineRadio1">Homme</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genre" id="genre" value="Femme">
+                        <label class="form-check-label" for="inlineRadio2">Femme</label>
+                      </div>
+                  </div>
+
+                  
+                  
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Pays</label>
+                    <select class="form-select" aria-label="Default select example" id="pays" name="pays">
+                      <option selected>Votre Pays ?</option>
+                      <option value="France">France</option>
+                      <option value="Belgique">Belgique</option>
+                      <option value="DOMTOM">DOM-TOM (pas besoin de préciser)</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Addresse</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="addresse" id="addresse"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary">S'inscire</button>
+              </form>
+            
+          </div>
+          
+        </div>
+    </div>
+
+    </section>
