@@ -1,15 +1,19 @@
 const express = require("express");
 const User = require("../DB/users");
 const authentification = require("../middlewares/authentification");
+const rendu = require("../middlewares/rendu");
 const connectDB = require("../connexions");
 const mongoose = require("mongoose");
 const db = mongoose.connection
+const jwt = require('jsonwebtoken');
 const router = new express.Router();
 const app = express();
 
-router.get('/', async (req, res) => {
+
+router.get('/', rendu, async (req, res) => {
     res.render('home', {
         title: "Acceuil",
+        user : req.user
     });
 });
 
@@ -23,6 +27,13 @@ router.get('/inscription', (req, res) => {
     }
     
 });
+
+router.get('/moncompte', authentification, (req, res) => {
+    res.render('moncompte', {
+        title: "Mon compte",
+        user : req.user
+    })
+})
 
 router.post('/inscription', async (req, res) => {
     await db.collection('users').dropIndexes('authtoken');
@@ -42,14 +53,10 @@ router.post('/inscription', async (req, res) => {
         const userSave = await user.save();
         res.redirect('seconnecter');
     } catch (e){
-        console.log(e)
-        res.status(400).send(e);
+        res.redirect('inscription')
     }
 });
 
-router.get('/test', authentification, (req, res ) => {
-    res.render('testttt')
-})
 
 router.get('/seconnecter', (req, res) => {
     if (req.cookies.jwt) {
@@ -73,8 +80,7 @@ router.post('/seconnecter', async (req, res) => {
     }
 });
 
-
-router.get('/deconnexion', authentification, async (req, res) => {
+router.get('/deconnexion', async (req, res) => {
     try {
         res.clearCookie('jwt');
         res.redirect('/');
